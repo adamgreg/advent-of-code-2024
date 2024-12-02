@@ -10,10 +10,7 @@ const nums = input.matchAll(/(\d+) +(\d+)/g).map((x) => x.slice(1).map(decInt));
 
 const [left, right] = unzip(nums.toArray() as [number, number][]);
 
-const one = sumOf(
-    zip(left.sort(), right.sort()),
-    ([l, r]) => Math.abs(r - l),
-);
+const one = sumOf(zip(left.sort(), right.sort()), ([l, r]) => Math.abs(r - l));
 
 console.log("Part one:", one);
 
