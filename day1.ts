@@ -1,18 +1,12 @@
-import "jsr:@std/dotenv/load";
 import { sumOf, unzip, zip } from "jsr:@std/collections";
 
-const resp = await fetch(
-    "https://adventofcode.com/2024/day/1/input",
-    { headers: { cookie: Deno.env.get("SESSION_COOKIES")! } },
-);
+import { decInt, getInput } from "./util.ts";
 
-const input = await resp.text();
+const input = await getInput(1);
 
 // Part one
 
-const nums = input.matchAll(/(\d+) +(\d+)/g).map((x) =>
-    x.slice(1).map((y) => parseInt(y))
-);
+const nums = input.matchAll(/(\d+) +(\d+)/g).map((x) => x.slice(1).map(decInt));
 
 const [left, right] = unzip(nums.toArray() as [number, number][]);
 
